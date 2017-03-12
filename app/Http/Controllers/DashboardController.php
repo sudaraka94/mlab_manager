@@ -36,10 +36,17 @@ class DashboardController extends Controller
     }
 
     public function submit_form(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'date' => 'required',
+        ]);
         $report=new Report;
+        $report->name_front=$request->input('name_front');
         $report->name=$request->input('name');
         $report->gender=$request->input('gender');
-        $report->age=$request->input('age');
+        $report->age_years=$request->input('age_years');
+        $report->age_months=$request->input('age_months');
+        $report->age_days=$request->input('age_days');
         $report->type=$request->input('type');
         $report->specimen=$request->input('specimen');
         $report->date=Carbon::createFromFormat('m/d/Y',$request->input('date'));
@@ -64,18 +71,26 @@ class DashboardController extends Controller
     }
 
     public function submit_edit_form(Request $request){
+//        dd($request);
+        $this->validate($request, [
+            'name' => 'required',
+            'date' => 'required',
+        ]);
         $report=Report::where('id',$request->input('id'))->first();
+        $report->name_front=$request->input('name_front');
         $report->name=$request->input('name');
         $report->gender=$request->input('gender');
-        $report->age=$request->input('age');
+        $report->age_years=$request->input('age_years');
+        $report->age_months=$request->input('age_months');
+        $report->age_days=$request->input('age_days');
         $report->type=$request->input('type');
         $report->specimen=$request->input('specimen');
-        if($request->input('date-early')){
-            $report->date=$request->input('date');
+        if($request->input('date')==null){
+            $report->date=$request->input('date-early');
         }else{
             $report->date=Carbon::createFromFormat('m/d/Y',$request->input('date'));
         }
-        if($report->save()){
+        if($report->update()){
             if($request->input('type')==1 or $request->input('type')==2 or $request->input('type')==3 ){
                 $bsst=Bsst::where('report_id',$request->input('id'))->first();
                 $bsst->report_id=$report->id;
@@ -87,7 +102,7 @@ class DashboardController extends Controller
                 $bsst->pre_dinner=$request->input('pre_dinner');
                 $bsst->post_dinner=$request->input('post_dinner');
 
-                if(!$bsst->save()){
+                if(!$bsst->update()){
                     $report->delete();
                     return $this->index()->with('message','Error occured,task failed!');
                 }
@@ -99,6 +114,11 @@ class DashboardController extends Controller
     public function browse(Request $request){
         $reports=Report::paginate(10);
         return view('Dashboard.browse')->with('user',Auth::user())->with('reports',$reports)->with('types',Type::all())->with('req',$request);
+    }
+    
+    public function detailed(Request $request){
+        $reports=Report::paginate(10);
+        return view('Dashboard.detailed')->with('user',Auth::user())->with('reports',$reports)->with('types',Type::all())->with('req',$request);
     }
 
     public function browse_filter(Request $request){
@@ -125,6 +145,31 @@ class DashboardController extends Controller
             $reports=Report::paginate(10);
         }
         return view('Dashboard.browse')->with('user',Auth::user())->with('reports',$reports)->with('types',Type::all())->with('req',$request);
+    }
+    public function detailed_filter(Request $request){
+        if($request->input()!=[]){
+            if($request->input('gender')=='all'){
+                $reports=Report::whereIn('gender',array('male','female','other'));
+            }else {
+                $reports = Report::where('gender', $request->input('gender'));
+            }
+            if($request->input('name')){
+                $reports=$reports->where('name','LIKE','%'.$request->input('name').'%');
+            }
+            if($request->input('age')){
+                $reports=$reports->where('age',$request->input('age'));
+            }
+            if($request->input('type')!='null'){
+                $reports=$reports->where('type',$request->input('type'));
+            }
+            if($request->input('date')){
+                $reports=$reports->where('date',Carbon::createFromFormat('m/d/Y',$request->input('date'))->toDateString());
+            }
+            $reports=$reports->paginate(10);
+        }else{
+            $reports=Report::paginate(10);
+        }
+        return view('Dashboard.detailed')->with('user',Auth::user())->with('reports',$reports)->with('types',Type::all())->with('req',$request);
     }
 
     public function report_print(Request $request){

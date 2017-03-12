@@ -28,6 +28,14 @@
             </span>
                 </a>
             </li>
+            <li class="treeview">
+                <a href="{{url('dashboard/reports/detailed')}}">
+                    <i class="fa fa-files-o"></i>
+                    <span>Detailed Reports</span>
+            <span class="pull-right-container">
+            </span>
+                </a>
+            </li>
 
         </ul>
     </section>

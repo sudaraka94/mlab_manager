@@ -71,14 +71,13 @@
         <script src="{{asset('dist/js/demo.js')}}"></script>
         <script>
             $(function () {
-                //Date picker
+//                Date picker
                 $('#datepicker').datepicker({
                     autoclose: true
-                });
-                $('#datepicker').datepicker({
-                    dateFormat: 'dd-mm-yy'
+//                    dateFormat:'dd-mm-yy'
                 });
             });
+
     </script>
 
 @endsection

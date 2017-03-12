@@ -81,7 +81,7 @@
                 <div class="col-xs-12">
                     <h2 class="page-header">
                         <i class="fa fa-globe"></i>RATHNA
-                        <small class="pull-right">Date: {{$report->date}}</small>
+                        <small class="pull-right">Date: {{$report->getDate()}}</small>
                     </h2>
                 </div>
                 <!-- /.col -->
@@ -90,10 +90,10 @@
             <div class="row invoice-info">
                 <div class="col-sm-12 ">
                     <address>
-                        <strong>Patient Name : {{$report->name}} <br>
-                            Age : {{$report->age}}<br>
+                        <strong>Patient Name : {{$report->name_front}} {{$report->name}}<br>
+                            Age : @if($report->age_years>0){{$report->age_years}} Years @endif @if($report->age_months>0){{$report->age_months}} Months @endif @if($report->age_days>0){{$report->age_days}} Days @endif<br>
                             Sex :{{$report->gender}}<br>
-                            Speciemn :{{$report->specimen}}</strong>
+                            Specimen :{{$report->specimen}}</strong>
                     </address>
                 </div>
             </div>

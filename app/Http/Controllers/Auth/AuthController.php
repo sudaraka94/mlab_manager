@@ -72,6 +72,7 @@ class AuthController extends Controller
             );
         }
 
+        
         Auth::login($this->create($request->all()));
 
         return redirect('auth/register')->withErrors(['Successfully added the user to the system']);

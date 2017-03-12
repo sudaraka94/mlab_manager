@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+	return redirect()->route('login');
 });
 //
 //Route::get('/dashboard', function () {
@@ -20,7 +21,7 @@ Route::get('/', function () {
 //});
 
 // Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::get('auth/login', ['uses'=>'Auth\AuthController@getLogin','as'=>'login']);
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
@@ -51,8 +52,14 @@ Route::group(['middleware' => 'auth'], function()
     //Browse Report route
     Route::get('dashboard/reports/browse','DashboardController@browse');
 
+    //Browse Detailed Report route
+    Route::get('dashboard/reports/detailed','DashboardController@detailed');
+
     //Browse Report route
     Route::post('dashboard/reports/browse','DashboardController@browse_filter');
+
+    //Browse Detailed Report route
+    Route::post('dashboard/reports/detailed','DashboardController@detailed_filter');
 
     //Browse Report route
     Route::get('dashboard/reports/print','DashboardController@report_print');

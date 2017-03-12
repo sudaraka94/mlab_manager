@@ -103,17 +103,17 @@
                 <!-- ./col -->
                 <div class="col-lg-3 col-xs-6">
                     <!-- small box -->
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <h3>65</h3>
+                    <a href="{{url('dashboard/reports/detailed')}}" class="small-box bg-red">
+                            <div class="inner">
+                                <h3>Browse</h3>
 
-                            <p>Unique Visitors</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
-                        </div>
-                        <a  class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+                                <p>Detailed Reports</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <div class="small-box-footer">Click to browse detailed reports <i class="fa fa-arrow-circle-right"></i></div>
+                    </a>
                 </div>
                 <!-- ./col -->
             </div>
@@ -123,7 +123,7 @@
     </div>
     </div>
 <!-- ./wrapper -->
-    <form TARGET="_blank" action="{{url('dashboard/reports/new')}}" method="get">
+    <form  action="{{url('dashboard/reports/new')}}" method="get">
     <div class="modal fade" id="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -223,6 +223,14 @@
             //Date picker
             $('#datepicker').datepicker({
                 autoclose: true
+            });
+
+            $("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+            $("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' }).bind("change",function(){
+                var minValue = $(this).val();
+                minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
+                minValue.setDate(minValue.getDate()+1);
+                $("#to").datepicker( "option", "minDate", minValue );
             });
 
             //iCheck for checkbox and radio inputs

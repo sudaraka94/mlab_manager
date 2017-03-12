@@ -130,13 +130,13 @@
                     </tr>
                     @foreach($reports as $report)
                     <tr>
-                        <td>{{$report->name}}</td>
+                        <td>{{$report->name_front}} {{$report->name}}</td>
                         <td>{{$report->gender}}</td>
-                        <td>{{$report->age}}</td>
+                        <td>@if($report->age_years>0){{$report->age_years}} Years @endif @if($report->age_months>0){{$report->age_months}} Months @endif @if($report->age_days>0){{$report->age_days}} Days @endif</td>
                             <td>{{$report->getType()}}</td>
                         <td>{{$report->date}}</td>
                         <td><form TARGET="_blank" action="{{url('dashboard/reports/print')}}" method="get">{!! csrf_field() !!}<input hidden="true" value="{{$report->id}}" name="id"><button type="submit" class="btn btn-success">Print</button></form></td>
-                        <td><form TARGET="_blank" action="{{url('dashboard/reports/view')}}" method="get">{!! csrf_field() !!}<input hidden="true" value="{{$report->id}}" name="id"> <button type="submit" class="btn btn-info">View</button></form></td>
+                        <td><form  action="{{url('dashboard/reports/view')}}" method="get">{!! csrf_field() !!}<input hidden="true" value="{{$report->id}}" name="id"> <button type="submit" class="btn btn-info">View</button></form></td>
                     </tr>
                         @endforeach
                 </table>

@@ -15,8 +15,11 @@ class CreateReportTable extends Migration
         Schema::create('report',function (Blueprint $table){
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('name_front');
             $table->string('name');
-            $table->integer('age');
+            $table->integer('age_years')->default(0);
+            $table->integer('age_months')->default(0);
+            $table->integer('age_days')->default(0);
             $table->string('type');
             $table->string('gender');
             $table->date('date');
