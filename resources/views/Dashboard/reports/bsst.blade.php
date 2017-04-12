@@ -1,9 +1,9 @@
 <table class="table table-responsive">
-    <tr>
-        <th><strong>Description</strong></th>
-        <th><strong>Result</strong></th>
-        <th><strong>Unit</strong></th>
-        <th><strong>Reference Range</strong></th>
+    <tr style="background-color: lightgrey;">
+        <th style="font-weight: 500;">Description</th>
+        <th style="font-weight: 500;">Result</th>
+        <th style="font-weight: 500;">Unit</th>
+        <th style="font-weight: 500;">Reference Range</th>
     </tr>
     @if($report->type=='2'|$report->type=='3')
         <tr>

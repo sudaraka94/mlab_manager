@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bsst;
+use App\fbs;
 use App\Report;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -65,7 +66,20 @@ class DashboardController extends Controller
                     $report->delete();
                     return $this->browse($request)->with('message','Error occured,task failed!');
                 }
-                return view('Dashboard.view_report')->with('user',Auth::user())->with('report',$report)->with('det',$bsst)->with('types',Type::all());
+//                return view('Dashboard.view_report')->with('user',Auth::user())->with('report',$report)->with('det',$bsst)->with('types',Type::all());
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$bsst);
+            }else if($request->input('type')==4 or $request->input('type')==5 or $request->input('type')==6 ){
+                $fbs=new fbs;
+                $fbs->report_id=$report->id;
+                $fbs->fbs=$request->input('fbs');
+                $fbs->ppbs=$request->input('ppbs');
+                $fbs->urine_sugar=$request->input('urine_sugar');
+                $fbs->urine_albumen=$request->input('urine_albumen');
+                if(!$fbs->save()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$fbs);
             }
         }
     }
@@ -106,7 +120,20 @@ class DashboardController extends Controller
                     $report->delete();
                     return $this->index()->with('message','Error occured,task failed!');
                 }
-                return view('Dashboard.view_report')->with('user',Auth::user())->with('report',$report)->with('det',$bsst)->with('types',Type::all());
+//                return view('Dashboard.view_report')->with('user',Auth::user())->with('report',$report)->with('det',$bsst)->with('types',Type::all());
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$bsst);
+            }else if($request->input('type')==4 or $request->input('type')==5 or $request->input('type')==6 ){
+                $fbs=fbs::where('report_id',$request->input('id'))->first();
+                $fbs->report_id=$report->id;
+                $fbs->fbs=$request->input('fbs');
+                $fbs->ppbs=$request->input('ppbs');
+                $fbs->urine_sugar=$request->input('urine_sugar');
+                $fbs->urine_albumen=$request->input('urine_albumen');
+                if(!$fbs->update()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$fbs);
             }
         }
     }
@@ -174,17 +201,14 @@ class DashboardController extends Controller
 
     public function report_print(Request $request){
         $report=Report::where('id',$request->input('id'))->first();
-        if($report->type=='1' or $report->type=='2' or $report->type=='3'){
-            $det=Bsst::where('report_id',$request->input('id'))->first();
-        }
+        $det=$report->getObject();
         return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$det);
     }
     
     public function report_view(Request $request){
         $report=Report::where('id',$request->input('id'))->first();
-        if($report->type=='1' or $report->type=='2' or $report->type=='3'){
-            $det=Bsst::where('report_id',$request->input('id'))->first();
-        }
+//        if($report->type=='1' or $report->type=='2' or $report->type=='3'){
+            $det=$report->getObject();
         return view('Dashboard.view_report')->with('user',Auth::user())->with('report',$report)->with('det',$det)->with('types',Type::all());
     }
 

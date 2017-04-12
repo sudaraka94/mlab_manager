@@ -28,6 +28,8 @@ class Report extends Model
     public function getObject(){
         if($this->type=='1'|$this->type=='2'|$this->type=='3'){
             return Bsst::where('report_id',$this->id)->first();
+        }else if($this->type=='4'|$this->type=='5'|$this->type=='6'){
+            return fbs::where('report_id',$this->id)->first();
         }
     }
 

@@ -26,9 +26,22 @@
     @include("Templates.Components.sidebar")
     <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            @if (count($errors) > 0)
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger alert-dismissable" style="margin-bottom: 3px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <ul>
+                            <li>{{ $error }}</li>
+                        </ul>
+                    </div>
+                @endforeach
+            @endif
+
             @include("Dashboard.forms.general")
             @if($req->input('type')=="1"|$req->input('type')=="2"|$req->input('type')=="3")
                 @include("Dashboard.forms.bsst")
+                @elseif($req->input('type')=="4"|$req->input('type')=="5"|$req->input('type')=="6")
+                    @include("Dashboard.forms.fbs")
                 @endif
         </div>
     </div>

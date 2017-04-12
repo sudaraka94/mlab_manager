@@ -104,7 +104,11 @@
             <!-- Table row -->
             <div class="row">
                 <div class="col-xs-12 table-responsive">
+                    @if($report->type=='1'|$report->type=='2'|$report->type=='3')
                     @include('Dashboard.reports.bsst')
+                        @elseif($report->type=='4'|$report->type=='5'|$report->type=='6')
+                        @include('Dashboard.reports.fbs')
+                    @endif
                 </div>
                 <!-- /.col -->
             </div>
