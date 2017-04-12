@@ -18,6 +18,68 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('/dist/css/skins/_all-skins.min.css')}}">
+    <style>
+        h1 {
+            font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+            font-size: 24px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 500;
+            line-height: 26.4px;
+        }
+        h3 {
+            font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+            font-size: 14px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 500;
+            line-height: 15.4px;
+        }
+        p {
+            font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+            font-size: 14px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+        blockquote {
+            font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+            font-size: 21px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 400;
+            line-height: 30px;
+        }
+        pre {
+            font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+            font-size: 13px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 400;
+            line-height: 18.5714px;
+        }
+        table{
+            font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+            font-size: 14px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+        .page-header{
+            font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+        .address{
+            font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+            font-style: normal;
+            font-variant: normal;
+        }
+    </style>
 </head>
 <body onload="window.print();">
 <div class="wrapper" >
@@ -37,7 +99,7 @@
         <!-- info row -->
         <div class="row invoice-info">
             <div class="col-sm-12 ">
-                <address>
+                <address class="address">
                     Patient Name : {{$report->name_front}} {{$report->name}}<br>
                     Age : @if($report->age_years>0){{$report->age_years}} Years @endif @if($report->age_months>0){{$report->age_months}} Months @endif @if($report->age_days>0){{$report->age_days}} Days @endif<br>
                     Sex :{{$report->gender}}<br>
