@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    //return view('welcome');
-	return redirect()->route('login');
-});
+Route::get('/', ['as'=>'home','uses'=>function () {
+    return view('website.index');
+//	return redirect()->route('login');
+}]);
 //
 //Route::get('/dashboard', function () {
 //    return view('Dashboard.index')->with('user',Auth::user());
