@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Rathna Medical Laboratory</title>
+    <title>Rathna Medical Service</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="http://webthemez.com" />
@@ -109,8 +109,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-sm-9">
-                    <h3>Rathna Medical Laboratory</h3>
-                    <p>Rathna Medical Laboratory is the leading medical laboratory service provider in Anamaduwa area.Our mission is to provide a reliable and customer friendly service to our customers. </p>
+                    <h3>Rathna Medical Service</h3>
+                    <p>Rathna Medical Service is the leading healthcare service provider in Anamaduwa area.Our mission is to provide a reliable and customer friendly service to our customers. </p>
                 </div>
                 {{--<div class="col-md-2 col-sm-3">--}}
                     {{--<a href="#" class="btn btn-primary">Read More</a>--}}

@@ -42,6 +42,10 @@
                 @include("Dashboard.forms.bsst")
                 @elseif($req->input('type')=="4"|$req->input('type')=="5"|$req->input('type')=="6")
                     @include("Dashboard.forms.fbs")
+                @elseif($req->input('type')=="7")
+                    @include("Dashboard.forms.ufr")
+                @elseif($req->input('type')=="8")
+                    @include("Dashboard.forms.sfr")
                 @endif
         </div>
     </div>

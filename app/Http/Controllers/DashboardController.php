@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bsst;
 use App\fbs;
+use App\ufr;
 use App\Report;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -80,6 +81,40 @@ class DashboardController extends Controller
                     return $this->browse($request)->with('message','Error occured,task failed!');
                 }
                 return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$fbs);
+            }else if($request->input('type')==7 or $request->input('type')==8){
+                $ufr=new ufr;
+                $ufr->report_id=$report->id;
+                $ufr->appearance=$request->input('appearance');
+                $ufr->sg=$request->input('sg');
+                $ufr->reaction=$request->input('reaction');
+                $ufr->albumen=$request->input('albumen');
+                $ufr->sugar=$request->input('sugar');
+                $ufr->acetone=$request->input('acetone');
+                $ufr->bile=$request->input('bile');
+                $ufr->urobilino=$request->input('urobilino');
+                $ufr->u_pus=$request->input('u_pus');
+                $ufr->u_rbc=$request->input('u_rbc');
+                $ufr->fpi=$request->input('fpi');
+                $ufr->cast=$request->input('cast');
+                $ufr->o_deposit=$request->input('o_deposit');
+                $ufr->crystals=$request->input('crystals');
+                $ufr->hwo=$request->input('hwo');
+                $ufr->rwo=$request->input('rwo');
+                $ufr->ameba=$request->input('ameba');
+                $ufr->cysts=$request->input('cysts');
+                $ufr->clc=$request->input('clc');
+                $ufr->s_pus=$request->input('s_pus');
+                $ufr->s_rbc=$request->input('s_rbc');
+                $ufr->mucus=$request->input('mucus');
+                $ufr->macrophags=$request->input('macrophags');
+                $ufr->consistens=$request->input('consistens');
+                $ufr->r_substances=$request->input('r_substances');
+
+                if(!$ufr->save()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$ufr);
             }
         }
     }
@@ -134,6 +169,40 @@ class DashboardController extends Controller
                     return $this->browse($request)->with('message','Error occured,task failed!');
                 }
                 return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$fbs);
+            }else if($request->input('type')==7 or $request->input('type')==8){
+                $ufr=new ufr;
+                $ufr->report_id=$report->id;
+                $ufr->appearance=$request->input('appearance');
+                $ufr->sg=$request->input('sg');
+                $ufr->reaction=$request->input('reaction');
+                $ufr->albumen=$request->input('albumen');
+                $ufr->sugar=$request->input('sugar');
+                $ufr->sugar=$request->input('acetone');
+                $ufr->bile=$request->input('bile');
+                $ufr->urobilino=$request->input('urobilino');
+                $ufr->u_pus=$request->input('u_pus');
+                $ufr->u_rbc=$request->input('u_rbc');
+                $ufr->fpi=$request->input('fpi');
+                $ufr->cast=$request->input('cast');
+                $ufr->o_deposit=$request->input('o_deposit');
+                $ufr->crystals=$request->input('crystals');
+                $ufr->hwo=$request->input('hwo');
+                $ufr->rwo=$request->input('rwo');
+                $ufr->ameba=$request->input('ameba');
+                $ufr->cysts=$request->input('cysts');
+                $ufr->clc=$request->input('clc');
+                $ufr->s_pus=$request->input('s_pus');
+                $ufr->s_rbc=$request->input('s_rbc');
+                $ufr->mucus=$request->input('mucus');
+                $ufr->macrophags=$request->input('macrophags');
+                $ufr->consistens=$request->input('consistens');
+                $ufr->r_substances=$request->input('r_substances');
+
+                if(!$ufr->update()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$ufr);
             }
         }
     }

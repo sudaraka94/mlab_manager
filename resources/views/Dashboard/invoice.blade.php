@@ -86,19 +86,20 @@
     <!-- Main content -->
     <section class="invoice" >
         <!-- title row -->
-        <div style="margin-top: 22%"></div>
-        <div class="row">
-            <div class="col-xs-12">
-                <h2 class="page-header" style="font-weight: 500;">
-                    <i class="fa fa-globe"></i>RATHNA
-                    <small class="pull-right">Date: {{$report->getDate()}}</small>
-                </h2>
-            </div>
-            <!-- /.col -->
-        </div>
+        <div style="margin-top: 32%"></div>
+        {{--<div class="row">--}}
+            {{--<div class="col-xs-12">--}}
+                {{--<h2 class="page-header" style="font-weight: 500;">--}}
+                    {{--<i class="fa fa-globe"></i>RATHNA--}}
+                    {{--<small class="pull-right">Date: {{$report->getDate()}}</small>--}}
+                {{--</h2>--}}
+            {{--</div>--}}
+            {{--<!-- /.col -->--}}
+        {{--</div>--}}
         <!-- info row -->
         <div class="row invoice-info">
             <div class="col-sm-12 ">
+                <div class="pull-right">Date: {{$report->getDate()}}</div>
                 <address class="address">
                     Patient Name : {{$report->name_front}} {{$report->name}}<br>
                     Age : @if($report->age_years>0){{$report->age_years}} Years @endif @if($report->age_months>0){{$report->age_months}} Months @endif @if($report->age_days>0){{$report->age_days}} Days @endif<br>
@@ -108,7 +109,7 @@
             </div>
         </div>
         <!-- /.row -->
-        <div class="container" style="padding: 30px">
+        <div class="container" style="padding: 30px;margin-top: -40px">
             <h3 align="center">{{$report->getType()}}</h3>
         </div>
         <!-- Table row -->
@@ -118,6 +119,10 @@
                     @include('Dashboard.reports.bsst')
                 @elseif($report->type=='4'|$report->type=='5'|$report->type=='6')
                     @include('Dashboard.reports.fbs')
+                @elseif($report->type=='7')
+                    @include('Dashboard.reports.ufr')
+                @elseif($report->type=='8')
+                    @include('Dashboard.reports.sfr')
                 @endif
             </div>
             <!-- /.col -->
