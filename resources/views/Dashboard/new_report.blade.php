@@ -46,6 +46,14 @@
                     @include("Dashboard.forms.ufr")
                 @elseif($req->input('type')=="8")
                     @include("Dashboard.forms.sfr")
+                @elseif($req->input('type')=="9"|$req->input('type')=="10")
+                    @include("Dashboard.forms.hcg")
+                @elseif($req->input('type')=="11")
+                    @include("Dashboard.forms.blood_group")
+                @elseif($req->input('type')=="12")
+                    @include("Dashboard.forms.lipidp")
+                @elseif($req->input('type')=="13"|$req->input('type')=="14"|$req->input('type')=="15")
+                    @include("Dashboard.forms.s_creatinine")
                 @endif
         </div>
     </div>
@@ -90,6 +98,10 @@
             $(function () {
 //                Date picker
                 $('#datepicker').datepicker({
+                    autoclose: true
+//                    dateFormat:'dd-mm-yy'
+                });
+                $('#datepicker_hcg').datepicker({
                     autoclose: true
 //                    dateFormat:'dd-mm-yy'
                 });

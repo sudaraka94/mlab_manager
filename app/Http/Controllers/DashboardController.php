@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Bsst;
 use App\fbs;
+use App\blood_group;
+use App\hcg;
+use App\lipidp;
 use App\ufr;
 use App\Report;
+use App\s_creatinine;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -115,6 +119,67 @@ class DashboardController extends Controller
                     return $this->browse($request)->with('message','Error occured,task failed!');
                 }
                 return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$ufr);
+            }else if($request->input('type')==9 or $request->input('type')==10){
+                $hcg=new hcg;
+                $hcg->report_id=$report->id;
+                $hcg->hcg=$request->input('hcg');
+                $hcg->repeat=$request->input('repeat');
+                $hcg->appearance=$request->input('appearance');
+                $hcg->sg=$request->input('sg');
+                $hcg->reaction=$request->input('reaction');
+                $hcg->albumen=$request->input('albumen');
+                $hcg->sugar=$request->input('sugar');
+                $hcg->acetone=$request->input('acetone');
+                $hcg->bile=$request->input('bile');
+                $hcg->urobilino=$request->input('urobilino');
+                $hcg->u_pus=$request->input('u_pus');
+                $hcg->u_rbc=$request->input('u_rbc');
+                $hcg->fpi=$request->input('fpi');
+                $hcg->cast=$request->input('cast');
+                $hcg->o_deposit=$request->input('o_deposit');
+                $hcg->crystals=$request->input('crystals');
+
+                if(!$hcg->save()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$hcg);
+            }else if($request->input('type')==11){
+                $blood_group=new blood_group;
+                $blood_group->report_id=$report->id;
+                $blood_group->group=$request->input('group');
+
+                if(!$blood_group->save()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$blood_group);
+            }else if($request->input('type')==12){
+                $lipidp=new lipidp;
+                $lipidp->report_id=$report->id;
+                $lipidp->c_total=$request->input('c_total');
+                $lipidp->c_hdl=$request->input('c_hdl');
+                $lipidp->triglycerides=$request->input('triglycerides');
+                $lipidp->c_ldl=$request->input('c_ldl');
+                $lipidp->c_total_hdl=$request->input('c_total_hdl');
+
+                if(!$lipidp->save()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$lipidp);
+            }else if($request->input('type')==13|$request->input('type')==14|$request->input('type')==15){
+                $lipidp=new s_creatinine;
+                $lipidp->report_id=$report->id;
+                $lipidp->s_creatinine=$request->input('s_creatinine');
+                $lipidp->egfr=$request->input('egfr');
+                $lipidp->b_urea=$request->input('b_urea');
+
+                if(!$lipidp->save()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$lipidp);
             }
         }
     }
@@ -203,6 +268,67 @@ class DashboardController extends Controller
                     return $this->browse($request)->with('message','Error occured,task failed!');
                 }
                 return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$ufr);
+            }else if($request->input('type')==9 or $request->input('type')==10){
+                $hcg=new hcg;
+                $hcg->report_id=$report->id;
+                $hcg->hcg=$request->input('hcg');
+                $hcg->repeat=$request->input('repeat');
+                $hcg->appearance=$request->input('appearance');
+                $hcg->sg=$request->input('sg');
+                $hcg->reaction=$request->input('reaction');
+                $hcg->albumen=$request->input('albumen');
+                $hcg->sugar=$request->input('sugar');
+                $hcg->acetone=$request->input('acetone');
+                $hcg->bile=$request->input('bile');
+                $hcg->urobilino=$request->input('urobilino');
+                $hcg->u_pus=$request->input('u_pus');
+                $hcg->u_rbc=$request->input('u_rbc');
+                $hcg->fpi=$request->input('fpi');
+                $hcg->cast=$request->input('cast');
+                $hcg->o_deposit=$request->input('o_deposit');
+                $hcg->crystals=$request->input('crystals');
+
+                if(!$hcg->save()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$hcg);
+            }else if($request->input('type')==11){
+                $blood_group=new blood_group;
+                $blood_group->report_id=$report->id;
+                $blood_group->group=$request->input('group');
+
+                if(!$blood_group->save()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$blood_group);
+            }else if($request->input('type')==12){
+                $lipidp=new lipidp;
+                $lipidp->report_id=$report->id;
+                $lipidp->c_total=$request->input('c_total');
+                $lipidp->c_hdl=$request->input('c_hdl');
+                $lipidp->triglycerides=$request->input('triglycerides');
+                $lipidp->c_ldl=$request->input('c_ldl');
+                $lipidp->c_total_hdl=$request->input('c_total_hdl');
+
+                if(!$lipidp->save()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$lipidp);
+            }else if($request->input('type')==13|$request->input('type')==14|$request->input('type')==15){
+                $lipidp=new s_creatinine;
+                $lipidp->report_id=$report->id;
+                $lipidp->s_creatinine=$request->input('s_creatinine');
+                $lipidp->egfr=$request->input('egfr');
+                $lipidp->b_urea=$request->input('b_urea');
+
+                if(!$lipidp->save()){
+                    $report->delete();
+                    return $this->browse($request)->with('message','Error occured,task failed!');
+                }
+                return view('Dashboard.invoice')->with('user',Auth::user())->with('report',$report)->with('det',$lipidp);
             }
         }
     }
@@ -291,7 +417,7 @@ class DashboardController extends Controller
             $message="Task failed";
         }
         $reports=Report::paginate(10);
-        return view('Dashboard.browse')->with('user',Auth::user())->with('reports',$reports)->with('types',Type::all())->with('req',$request)->with('message',$message);
+        return redirect(route('browse'))->with('user',Auth::user())->with('reports',$reports)->with('types',Type::all())->with('req',$request)->with('message',$message);
 
     }
 }

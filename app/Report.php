@@ -30,6 +30,18 @@ class Report extends Model
             return Bsst::where('report_id',$this->id)->first();
         }else if($this->type=='4'|$this->type=='5'|$this->type=='6'){
             return fbs::where('report_id',$this->id)->first();
+        }else if($this->type=='7'){
+            return ufr::where('report_id',$this->id)->first();
+        }else if($this->type=='8'){
+            return sfr::where('report_id',$this->id)->first();
+        }else if($this->type=='9'|$this->type=='10'){
+            return hcg::where('report_id',$this->id)->first();
+        }else if($this->type=='11'){
+            return blood_group::where('report_id',$this->id)->first();
+        }else if($this->type=='12'){
+            return lipidp::where('report_id',$this->id)->first();
+        }else if($this->type=='13'|$this->type=='14'|$this->type=='15'){
+            return s_creatinine::where('report_id',$this->id)->first();
         }
     }
 

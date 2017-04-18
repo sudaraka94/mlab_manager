@@ -56,7 +56,7 @@
                 <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                 </div>
-                <input name="date" type="text" @if($submit=="edit")value="{{$obj->getPickDate()}}" @endif autocomplete="off" class="form-control pull-right" id="datepicker">
+                <input name="date" type="text" @if($submit=="edit")value="{{$obj->getPickDate()}}" @endif autocomplete="off" class="form-control pull-right" id="datepicker_hcg">
             </div>
         </div>
         <!-- /.box-body -->

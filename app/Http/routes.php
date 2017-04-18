@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('dashboard/reports/submit','DashboardController@submit_form');
 
     //Browse Report route
-    Route::get('dashboard/reports/browse','DashboardController@browse');
+    Route::get('dashboard/reports/browse',['as'=>'browse','uses'=>'DashboardController@browse']);
 
     //Browse Detailed Report route
     Route::get('dashboard/reports/detailed','DashboardController@detailed');

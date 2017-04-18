@@ -112,6 +112,14 @@
                         @include('Dashboard.reports.ufr')
                     @elseif($report->type=='8')
                         @include('Dashboard.reports.sfr')
+                    @elseif($report->type=='9'|$report->type=='10')
+                        @include('Dashboard.reports.hcg')
+                    @elseif($report->type=='11')
+                        @include('Dashboard.reports.blood_group')
+                    @elseif($report->type=='12')
+                        @include('Dashboard.reports.lipidp')
+                    @elseif($report->type=='13'|$report->type=='14'|$report->type=='15')
+                        @include('Dashboard.reports.s_creatinine')
                     @endif
                 </div>
                 <!-- /.col -->

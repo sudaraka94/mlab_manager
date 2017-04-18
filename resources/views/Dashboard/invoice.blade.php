@@ -67,7 +67,7 @@
             font-weight: 400;
             line-height: 20px;
         }
-        .page-header{
+        .up-date{
             font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
             font-style: normal;
             font-variant: normal;
@@ -99,7 +99,7 @@
         <!-- info row -->
         <div class="row invoice-info">
             <div class="col-sm-12 ">
-                <div class="pull-right">Date: {{$report->getDate()}}</div>
+                <div class="pull-right up-date">Date: {{$report->getDate()}}</div>
                 <address class="address">
                     Patient Name : {{$report->name_front}} {{$report->name}}<br>
                     Age : @if($report->age_years>0){{$report->age_years}} Years @endif @if($report->age_months>0){{$report->age_months}} Months @endif @if($report->age_days>0){{$report->age_days}} Days @endif<br>
@@ -123,6 +123,14 @@
                     @include('Dashboard.reports.ufr')
                 @elseif($report->type=='8')
                     @include('Dashboard.reports.sfr')
+                @elseif($report->type=='9'|$report->type=='10')
+                    @include('Dashboard.reports.hcg')
+                @elseif($report->type=='11')
+                    @include('Dashboard.reports.blood_group')
+                @elseif($report->type=="12")
+                    @include("Dashboard.reports.lipidp")
+                @elseif($report->type=='13'|$report->type=='14'|$report->type=='15')
+                    @include('Dashboard.reports.s_creatinine')
                 @endif
             </div>
             <!-- /.col -->
